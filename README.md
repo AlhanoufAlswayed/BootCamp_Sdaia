@@ -4,7 +4,7 @@
 ![Streamlit](https://img.shields.io/badge/Streamlit-UI-green) 
 ![Typer CLI](https://img.shields.io/badge/CLI-Typer-orange) 
 ![License](https://img.shields.io/badge/License-MIT-lightgrey)
-![Streamlit UI](images/ui.png)
+![Streamlit UI](image.png)
 **CSV Profiler** is a Python package and interactive tool for profiling CSV files.  
 It provides both a **Streamlit UI** and **CLI** to generate **JSON** and **Markdown** reports with column statistics.
 

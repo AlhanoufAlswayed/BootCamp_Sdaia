@@ -27,6 +27,31 @@ Clone the repository and create a virtual environment:
 git clone https://github.com/AlhanoufAlswayed/BootCamp_Sdaia.git
 cd BootCamp_Sdaia
 python -m venv venv
+
+## 🛠 Usage
+
+### 1️⃣ Streamlit UI
+
+```bash
+streamlit run ui.py
+
+---
+
+```markdown
+## 📁 Project Structure
+
+BootCamp_Sdaia/
+├── csv_profiler/ # Main package
+│ ├── profile.py # CSV profiling logic
+│ ├── render.py # JSON/Markdown rendering
+│ ├── helper.py # Utility functions (numeric_stats, text_stats, is_missing, infer_type)
+│ └── io.py # CSV reading
+├── data/ # Input and output CSV files
+├── output/ # Generated reports
+├── ui.py # Streamlit interface
+├── main.py # CLI script using Typer
+├── requirements.txt # Dependencies
+└── README.md
 # Activate environment
 .\venv\Scripts\activate  # Windows
 source venv/bin/activate  # macOS/Linux

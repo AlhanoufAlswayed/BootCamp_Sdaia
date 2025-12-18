@@ -17,28 +17,33 @@ st.set_page_config(
 st.markdown(
     """
     <style>
+        /* الواجهة العامة */
         .stApp {
             background-color: #ffffff;
-            color: #000000;
+            color: #6B7280;
         }
 
         body, p, span, label, div, h1, h2, h3, h4, h5, h6 {
-            color: #000000 !important;
+            color: #6B7280 !important;
         }
 
+        /* العنوان */
         .main-title {
             font-size: 42px;
             font-weight: 700;
             text-align: center;
             margin-bottom: 10px;
+            color: #4B5563 !important;
         }
 
         .subtitle {
             text-align: center;
             font-size: 18px;
             margin-bottom: 30px;
+            color: #6B7280 !important;
         }
 
+        /* الكرت */
         .card {
             background-color: #ffffff;
             padding: 25px;
@@ -46,16 +51,34 @@ st.markdown(
             border: 1px solid #E5E7EB;
         }
 
-        .stButton>button {
-            background-color: #2563EB;
-            color: #ffffff !important;
-            border-radius: 10px;
-            padding: 0.6em 1.5em;
-            font-size: 16px;
-        }
+       /* زر Profile CSV يكون أسود */
+.stButton>button {
+    background-color: #111827 !important;
+    color: #ffffff !important;
+}
+
+.stButton>button:hover {
+    background-color: #000000 !important;
+ }
 
         .stButton>button:hover {
             background-color: #1D4ED8;
+        }
+
+        /* ===== نتائج التحليل (أسود ناعم) ===== */
+        .report-content,
+        .report-content p,
+        .report-content span,
+        .report-content li,
+        .report-content h1,
+        .report-content h2,
+        .report-content h3,
+        .report-content h4 {
+            color: #111827 !important;
+        }
+
+        .report-json {
+            color: #111827 !important;
         }
     </style>
     """,
@@ -78,6 +101,7 @@ uploaded_file = st.file_uploader(
 
 st.markdown('</div>', unsafe_allow_html=True)
 
+# ---------- SESSION STATE ----------
 if "report" not in st.session_state:
     st.session_state.report = None
 if "report_json" not in st.session_state:
@@ -86,6 +110,7 @@ if "report_md" not in st.session_state:
     st.session_state.report_md = None
 
 
+# ---------- LOGIC ----------
 if uploaded_file is not None:
     st.success("✅ File uploaded successfully")
 
@@ -111,7 +136,10 @@ if uploaded_file is not None:
                 file_name=f"{base}.md",
                 mime="text/markdown",
             )
-            st.markdown(st.session_state.report_md)
+            st.markdown(
+                f'<div class="report-content">{st.session_state.report_md}</div>',
+                unsafe_allow_html=True
+            )
 
         with tab_json:
             st.download_button(
@@ -120,7 +148,9 @@ if uploaded_file is not None:
                 file_name=f"{base}.json",
                 mime="application/json",
             )
+            st.markdown('<div class="report-json">', unsafe_allow_html=True)
             st.json(st.session_state.report)
+            st.markdown('</div>', unsafe_allow_html=True)
 
 else:
     st.info("👆 Please upload a CSV file to get started")
